@@ -119,5 +119,9 @@ public interface BitStamp {
   @Produces("application/json")
   public Object withdrawBitcoin(@FormParam("user") String user, @FormParam("password") String password, @FormParam("amount") BigDecimal amount, @FormParam("address") String address);
 
+  @GET
+  @Path("eur_usd/")
+  @Produces("application/json")
+  public BitstampEurUsdRate getExchangeRate();
   // TODO: bitstamp code handling, send to user
 }
