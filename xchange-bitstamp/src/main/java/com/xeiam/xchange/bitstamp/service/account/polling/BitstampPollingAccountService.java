@@ -28,6 +28,7 @@ import com.xeiam.xchange.ExchangeException;
 import com.xeiam.xchange.ExchangeSpecification;
 import com.xeiam.xchange.bitstamp.BitStamp;
 import com.xeiam.xchange.bitstamp.BitstampAdapters;
+import com.xeiam.xchange.bitstamp.BitstampEurUsdRate;
 import com.xeiam.xchange.bitstamp.dto.account.BitstampBalance;
 import com.xeiam.xchange.dto.account.AccountInfo;
 import com.xeiam.xchange.rest.RestProxyFactory;
@@ -76,6 +77,15 @@ public class BitstampPollingAccountService extends BasePollingExchangeService im
   public String requestBitcoinDepositAddress(final String... arguments) {
 
     return bitstamp.getBitcoinDepositAddress(exchangeSpecification.getUserName(), exchangeSpecification.getPassword());
+  }
+
+  /**
+   *
+   * @return the rate at which euros are converted to dollars and vice-versa.
+   * this rate should change daily and is taken at the time of withdrawal/deposit
+   */
+  public BitstampEurUsdRate getEurUsdRate() {
+      return bitstamp.getExchangeRate();
   }
 
 }
